@@ -12,7 +12,7 @@ import MainLayout from '@/layouts/MainLayout'
 
 export default {
   computed: {
-    layout() {
+    layout () {
       return (this.$route.meta.layout || 'empty') + '-layout'
     }
   },
@@ -21,7 +21,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss">
 @import '~materialize-css/dist/css/materialize.min.css';
