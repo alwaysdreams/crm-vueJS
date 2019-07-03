@@ -54,6 +54,7 @@ export default {
   },
   mounted () {
     this.interval = setInterval(() => { this.currentDate = new Date() }, 1000)
+    // eslint-disable-next-line
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false
     })

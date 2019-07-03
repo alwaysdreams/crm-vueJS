@@ -13,8 +13,5 @@ module.exports = {
   },
   parserOptions: {
     parser: 'babel-eslint'
-  },
-  global: {
-    M
   }
 }
