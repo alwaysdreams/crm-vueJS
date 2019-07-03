@@ -27,11 +27,11 @@
           :class="{invalid: ($v.password.$dirty && (!$v.password.required || !$v.password.minLength))}"
         >
         <label for="password">Пароль</label>
-        <small 
+        <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
         >Введите пароль</small>
-        <small 
+        <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.minLength"
         >Пароль должен быть не короче чем {{ $v.password.$params.minLength.min }} символов</small>
@@ -58,6 +58,7 @@
 
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import messages from '@/utils/messages'
 
 export default {
   name: 'login',
@@ -69,6 +70,9 @@ export default {
     email: { email, required },
     password: { required, minLength: minLength(4) }
   },
+  mounted () {
+    messages[this.$route.query.message] && this.$message(messages[this.$route.query.message])
+  },
   methods: {
     onSubmit () {
       if (this.$v.$invalid) {
@@ -79,7 +83,8 @@ export default {
         email: this.email,
         password: this.password
       }
-      //todo send login data to server
+      // todo send login data to server
+      console.log(formData)
       this.$router.push('/')
     }
   }
