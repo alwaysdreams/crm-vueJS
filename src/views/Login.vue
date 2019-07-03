@@ -10,7 +10,14 @@
           :class="{invalid: ($v.email.$dirty && (!$v.email.required || !$v.email.email))}"
         >
         <label for="email">Email</label>
-        <small class="helper-text invalid">Email</small>
+        <small
+          class="helper-text invalid"
+          v-if="$v.email.$dirty && !$v.email.required"
+        >Введите Email</small>
+        <small
+          class="helper-text invalid"
+          v-if="$v.email.$dirty && !$v.email.email"
+        >Введите корректный Email</small>
       </div>
       <div class="input-field">
         <input
@@ -20,7 +27,14 @@
           :class="{invalid: ($v.password.$dirty && (!$v.password.required || !$v.password.minLength))}"
         >
         <label for="password">Пароль</label>
-        <small class="helper-text invalid">Password</small>
+        <small 
+          class="helper-text invalid"
+          v-if="$v.password.$dirty && !$v.password.required"
+        >Введите пароль</small>
+        <small 
+          class="helper-text invalid"
+          v-else-if="$v.password.$dirty && !$v.password.minLength"
+        >Пароль должен быть не короче чем {{ $v.password.$params.minLength.min }} символов</small>
       </div>
     </div>
     <div class="card-action">
@@ -53,7 +67,7 @@ export default {
   }),
   validations: {
     email: { email, required },
-    password: { required, minLength: minLength(6) }
+    password: { required, minLength: minLength(4) }
   },
   methods: {
     onSubmit () {
@@ -61,6 +75,11 @@ export default {
         this.$v.$touch()
         return
       }
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+      //todo send login data to server
       this.$router.push('/')
     }
   }
