@@ -19,11 +19,11 @@ export default {
   props: ['value'],
   data: () => ({
     links: [
-      { title: 'Счет', url: '/detail', id: 1, exact: true },
-      { title: 'История', url: '/history', id: 2 },
-      { title: 'Планирование', url: '/planning', id: 3 },
-      { title: 'Новая запись', url: '/record', id: 4 },
-      { title: 'Категории', url: '/categories', id: 5 }
+      { title: 'Счет', url: '/detail', exact: true },
+      { title: 'История', url: '/history' },
+      { title: 'Планирование', url: '/planning' },
+      // { title: 'Новая запись', url: '/record' },
+      { title: 'Категории', url: '/categories' }
     ]
   })
 }
